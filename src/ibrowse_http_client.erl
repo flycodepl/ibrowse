@@ -611,7 +611,7 @@ do_close(#state{socket = Sock, is_ssl = false}) ->  catch gen_tcp:close(Sock).
 active_once(#state{cur_req = #request{caller_controls_socket = true}}) ->
     ok;
 active_once(#state{socket = Socket} = State) ->
-    ok = do_setopts(Socket, [{active, once}], State).
+    _ = do_setopts(Socket, [{active, once}], State).
 
 do_setopts(_Sock, [],   _)    ->  ok;
 do_setopts(Sock, Opts, #state{is_ssl = true,
